@@ -51,6 +51,23 @@ namespace library
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(TitleBox.Text) ||
+                    string.IsNullOrWhiteSpace(YearBox.Text) ||
+                    string.IsNullOrWhiteSpace(PagesBox.Text) ||
+                    string.IsNullOrWhiteSpace(AuthorBox.Text))
+                {
+                    MessageBox.Show("Заполните все обязательные поля!");
+                    return;
+                }
+
+                int year;
+                int pages;
+                if (!int.TryParse(YearBox.Text, out year) || !int.TryParse(PagesBox.Text, out pages))
+                {
+                    MessageBox.Show("Год и количество страниц должны быть числами!");
+                    return;
+                }
+
                 using (var db = new LibraryDBEntities())
                 {
                     string authorName = AuthorBox.Text.Trim();
@@ -71,9 +88,9 @@ namespace library
                         var newBook = new Book();
                         newBook.Title = TitleBox.Text;
                         newBook.AuthorId = author.Id;
-                        newBook.PublicationYear = int.Parse(YearBox.Text);
+                        newBook.PublicationYear = year;
                         newBook.Genre = GenreBox.Text;
-                        newBook.NumberOfPages = int.Parse(PagesBox.Text);
+                        newBook.NumberOfPages = pages;
                         db.Books.Add(newBook);
                     }
                     else
@@ -81,9 +98,9 @@ namespace library
                         var bookToUpdate = db.Books.Find(_editBook.Id);
                         bookToUpdate.Title = TitleBox.Text;
                         bookToUpdate.AuthorId = author.Id;
-                        bookToUpdate.PublicationYear = int.Parse(YearBox.Text);
+                        bookToUpdate.PublicationYear = year;
                         bookToUpdate.Genre = GenreBox.Text;
-                        bookToUpdate.NumberOfPages = int.Parse(PagesBox.Text);
+                        bookToUpdate.NumberOfPages = pages;
                     }
                     db.SaveChanges();
                 }
