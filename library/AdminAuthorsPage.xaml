@@ -1,0 +1,27 @@
+﻿<Page x:Class="library.AdminAuthorsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Авторы">
+
+    <Grid Background="LightGray" Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <DataGrid Grid.Column="0" Name="AuthorsGrid" 
+                  AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" Margin="0,0,10,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Имя автора" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth, StringFormat=\{0:dd.MM.yyyy\}}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10">
+            <Button Background="LightBlue" Content="Добавить автора" Click="AddAuthor_Click" Padding="10,5" Margin="0,0,0,10" Width="170"/>
+            <Button Background="LightBlue" Content="Редактировать автора" Click="EditAuthor_Click" Padding="10,5" Margin="0,0,0,10" Width="170"/>
+            <Button Background="LightBlue" Content="Удалить автора" Click="DeleteAuthor_Click" Padding="10,5" Width="170"/>
+        </StackPanel>
+    </Grid>
+</Page>

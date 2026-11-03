@@ -1,0 +1,41 @@
+﻿<Window x:Class="library.EditBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Книга" Height="500" Width="400" WindowStartupLocation="CenterScreen"
+        Background="Pink">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Name="HeaderText" Text="Книга" FontSize="24" FontWeight="Bold" 
+                   Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="3" ShadowDepth="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <StackPanel Grid.Row="1">
+            <Label Content="Название" Foreground="White" FontWeight="Bold"/>
+            <TextBox Name="TitleBox" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Автор" Foreground="White" FontWeight="Bold"/>
+            <TextBox Name="AuthorBox" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Год публикации" Foreground="White" FontWeight="Bold"/>
+            <TextBox Name="YearBox" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Жанр" Foreground="White" FontWeight="Bold"/>
+            <TextBox Name="GenreBox" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Количество страниц" Foreground="White" FontWeight="Bold"/>
+            <TextBox Name="PagesBox" Padding="5" Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Background="LightBlue" Content="Сохранить" Click="Save_Click" Padding="20,5" Margin="0,0,10,0"/>
+                <Button Background="LightBlue" Content="Отмена" Click="Cancel_Click" Padding="20,5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

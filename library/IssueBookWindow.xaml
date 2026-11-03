@@ -1,0 +1,37 @@
+﻿<Window x:Class="library.IssueBookWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Выдача книги" Height="450" Width="400" WindowStartupLocation="CenterOwner" Background="Pink">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Выдача книги" FontSize="24" FontWeight="Bold" 
+                   Foreground="White" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="Black" BlurRadius="3" ShadowDepth="0"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <StackPanel Grid.Row="1">
+            <Label Content="Книга" Foreground="White" FontWeight="Bold"/>
+            <ComboBox Name="BookCombo" DisplayMemberPath="Title" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Читатель" Foreground="White" FontWeight="Bold"/>
+            <ComboBox Name="ReaderCombo" DisplayMemberPath="FullName" Padding="5" Margin="0,0,0,10"/>
+
+            <Label Content="Дата выдачи" Foreground="White" FontWeight="Bold"/>
+            <DatePicker Name="IssueDatePicker" Margin="0,0,0,10"/>
+
+            <Label Content="Дата возврата" Foreground="White" FontWeight="Bold"/>
+            <DatePicker Name="ReturnDatePicker" Margin="0,0,0,20"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Background="LightBlue" Content="Выдать" Click="Issue_Click" Padding="20,5" Margin="0,0,10,0"/>
+                <Button Background="LightBlue" Content="Отмена" Click="Cancel_Click" Padding="20,5"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

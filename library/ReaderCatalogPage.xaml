@@ -1,0 +1,70 @@
+﻿<Page x:Class="library.ReaderCatalogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Каталог книг">
+    <Grid Background="LightGray" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="Pink" Margin="0,0,0,10">
+            <TextBlock Text="Каталог книг" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="White" BlurRadius="2" ShadowDepth="0"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10">
+            <StackPanel Margin="0,0,20,0">
+                <Label Content="Поиск по названию"/>
+                <TextBox Name="SearchBox" Width="150" Padding="5" TextChanged="SearchBox_TextChanged"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,20,0">
+                <Label Content="Автор"/>
+                <ComboBox Name="AuthorFilter" Width="150" Padding="5" SelectionChanged="FilterChanged"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,20,0">
+                <Label Content="Жанр"/>
+                <ComboBox Name="GenreFilter" Width="120" Padding="5" SelectionChanged="FilterChanged"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,0,20,0">
+                <Label Content="Сортировка"/>
+                <ComboBox Name="SortBox" Width="180" Padding="5" SelectionChanged="FilterChanged">
+                    <ComboBoxItem Content="По названию (а-я)" IsSelected="True"/>
+                    <ComboBoxItem Content="По году (сначала новые)"/>
+                    <ComboBoxItem Content="По году (сначала старые)"/>
+                    <ComboBoxItem Content="По страницам (сначала большие)"/>
+                    <ComboBoxItem Content="По страницам (сначала маленькие)"/>
+                </ComboBox>
+            </StackPanel>
+
+            <Button Content="Сбросить" Click="ResetFilter_Click" Padding="15,5" VerticalAlignment="Bottom" Height="30"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid Grid.Column="0" Name="BooksGrid" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" Margin="0,0,10,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Title}" Width="*"/>
+                    <DataGridTextColumn Header="Автор" Binding="{Binding Author.Name}" Width="200"/>
+                    <DataGridTextColumn Header="Жанр" Binding="{Binding Genre}" Width="150"/>
+                    <DataGridTextColumn Header="Год" Binding="{Binding PublicationYear}" Width="80"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10">
+                <Button Background="LightBlue" Content="Взять книгу" Click="BorrowBook_Click" Padding="10,5" Width="170"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
